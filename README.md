@@ -19,7 +19,8 @@
 
 | **Module**   | **Slides** | **Code**  |  **Resources** |
 | :------- | :------- | :------- | :-----: |
-| foo        | [HTML][p2_slides1], PDF    | R, Rmd     | Lab, Key   |
+| foo        | [HTML][p2_slides1_html], PDF    | R, [Rmd][p2_codeecample1_rmd]     | Lab, Key   |
 | foo        | HTML, PDF    | R, Rmd     | Lab, Key   |
 
-[p2_slides1]: https://martakarass.github.io/gam_fda_short_course/func_reg/foo/code_example.html
+[p2_slides1_html]: https://martakarass.github.io/gam_fda_short_course/func_reg/foo/slides.html
+[p2_codeecample1_rmd]: https://martakarass.github.io/gam_fda_short_course/func_reg/foo/code_example.html

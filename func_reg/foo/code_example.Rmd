@@ -5,11 +5,21 @@ author: "Erjia Cui"
 date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
 ---
 
-```{r setup, include=FALSE, echo = FALSE, purl = FALSE}
+```{r notes, include=FALSE, echo = FALSE, purl = FALSE}
+
+# The code commented below converts Rmd to R
+# - "purl = FALSE" means this particular chunk will not be included in the R output
+# - "documentation = 2" argument yields the R markdown TEXT will be included in 
+#   the R output as files
+
 # knitr::purl(input = paste0(here::here(), "/func_reg/foo/code_example.Rmd"),
 #             output = paste0(here::here(), "/func_reg/foo/code_example.R"),
 #             documentation = 2,
 #             quiet = TRUE)
+
+```
+
+```{r setup, include=FALSE, echo = FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 

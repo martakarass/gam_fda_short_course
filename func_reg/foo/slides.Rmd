@@ -1,0 +1,172 @@
+---
+title: "Introduction to R"
+author: "Introduction to R for Public Health Researchers"
+output:
+  ioslides_presentation:
+    css: ../../styles.css
+    widescreen: yes
+--- 
+
+```{r, echo = FALSE}
+library(knitr)
+opts_chunk$set(comment = "")
+```
+
+## Welcome to class!
+
+1. Introductions
+2. Class overview
+3. Getting R up and running
+
+## Checking that latex works
+
+Inline $x^2 + 2x + 1$
+
+Centered $$x^2 + 2x + 1$$
+
+Aligned 
+
+$$
+\begin{aligned}
+f(x) &= (x + 1)^2 \\
+ & = x^2 + 2x + 1
+\end{aligned}
+$$
+
+More fancy $$Y=\beta_{0}+\left\langle X^{c}, \beta\right\rangle+\varepsilon=\beta_{0}+\int_{\mathcal{T}} X^{c}(t) \beta(t) d t+\varepsilon$$
+
+
+## About Us
+
+**John Muschelli** 
+
+Assistant Scientist, Department of Biostatistics
+
+PhD in Biostatistics, ScM in Biostatistics
+
+Email: jmusche1@jhu.edu
+
+## About Us
+
+**Andrew Jaffe**
+
+Lead Investigator, Lieber Institute for Brain Development
+
+Associate Professor, Department of Mental Health, JHSPH
+
+PhD in Epidemiology, MHS in Bioinformatics
+
+Email: andrew.jaffe@libd.org
+
+
+## What is R?
+
+- R is a language and environment for statistical computing and graphics
+
+- R is the open source implementation of the S language, which was developed by Bell laboratories
+
+- R is both open source and open development
+
+(source: http://www.r-project.org/)
+
+## Why R?
+
+* Powerful and flexible
+
+* Free (open source)
+
+* Extensive add-on software (packages)
+
+* Designed for statistical computing
+
+* High level language
+
+## Why not R?
+
+* Fairly steep learning curve
+
+    * "Programming" oriented
+    
+    * Minimal interface
+    
+* Little centralized support, relies on online community and package developers
+
+* Annoying to update
+
+* Slower, and more memory intensive, than the more traditional programming languages (C, Java, Perl, Python)
+
+
+## Introductions
+
+What do you hope to get out of the class?
+
+Why else to use R?
+
+## Course Website
+
+http://johnmuschelli.com/intro_to_r
+
+Materials will be uploaded the night before class
+
+## Learning Objectives
+
+- Reading data into R
+- Recoding and manipulating data
+- Writing R functions and using add-on packages
+- Making exploratory plots
+- Understanding basic programming syntax
+- Performing basic statistical tests
+
+<!-- ## Course Format -->
+
+<!-- * 3 modules per class session, each approximately 1 hour -->
+<!--     * "Interactive" Lecture with RStudio + slides -->
+<!--     * Lab/Practical experience -->
+
+<!-- ## Grading -->
+
+<!-- 1. Attendance/Participation: 20% -->
+<!-- 2. Nightly Homework: 3 x 15% -->
+<!-- 3. Final "Project": 35%  -->
+
+<!-- ## Grading -->
+
+<!-- * **Homework 1**: Due Tuesday by class -->
+
+<!-- * **Homework 2**: Due Thursday by class -->
+
+<!-- * **Homework 3**: Due Friday by class -->
+
+<!-- * **Project**: Due 2 weeks after class ends -->
+
+## Installing R
+
+* Install the latest version from: [http://cran.r-project.org/](http://cran.r-project.org/ )
+
+* [Install RStudio](https://www.rstudio.com/products/rstudio/download/)
+
+## Collection of R packages
+
+We have an R package called jhur that will make sure all the packages are installed.
+
+You can just copy and paste the below code into your console - we'll explain what it all means in the next day or two
+
+```{r, packageInstall, eval=FALSE}
+install.packages("remotes")
+remotes::install_github("muschellij2/jhur")
+```
+
+Note it may take ~5-10 minutes to run.
+
+## Useful (+Free) Resources
+
+* R for Data Science: http://r4ds.had.co.nz/ 
+* Various "Cheat Sheets": https://www.rstudio.com/resources/cheatsheets/
+* DataCamp http://www.datacamp.com
+* R reference card: http://cran.r-project.org/doc/contrib/Short-refcard.pdf
+* UCLA Institute for Digital Research and Education: http://www.ats.ucla.edu/stat/r/
+* Quick R: http://statmethods.net/
+
+## Website
+
+[Website](http://johnmuschelli.com/intro_to_r/index.html)

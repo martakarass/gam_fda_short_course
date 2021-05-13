@@ -11,10 +11,16 @@
 
 | **Module**   | **Slides** | **Code**  |  **Resources** |
 | :------- | :------- | :------- | :-----: |
-| Intro       | HTML, PDF    | R, Rmd     | Lab, Key   |
-| Foo1        | HTML, PDF    | R, Rmd     | Lab, Key   |
-| Foo2        | HTML, PDF    | R, Rmd     | Lab, Key   |
+| Introduction        | HTML, PDF    |      |   |
+| Foo description        | HTML, PDF    | R, Rmd     | Lab, Key   |
+| Foo description        | HTML, PDF    | R, Rmd     | Lab, Key   |
 
 #### Part 2: Functional regression 
+
+| **Module**   | **Slides** | **Code**  |  **Resources** |
+| :------- | :------- | :------- | :-----: |
+| Introduction        | HTML, PDF    |      |   |
+| Foo description        | HTML, PDF    | R, Rmd     | Lab, Key   |
+| Foo description        | HTML, PDF    | R, Rmd     | Lab, Key   |
 
 

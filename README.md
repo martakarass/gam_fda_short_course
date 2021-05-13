@@ -20,7 +20,7 @@
 | **Module**   | **Slides** | **Code**  |  **Resources** |
 | :------- | :------- | :------- | :-----: |
 | foo        | [HTML][1], PDF    | R, Rmd     | Lab, Key   |
-| foo        | HTML, PDF    | R, Rmd     | Lab, Key   |
+| foo        | [HTML](https://www.jhsph.edu/academics/calendar/2018-2019.html), PDF    | R, Rmd     | Lab, Key   |
 
 [1]: func_reg/foo/xode_example.html
 

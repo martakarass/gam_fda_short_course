@@ -19,6 +19,6 @@
 
 | **Module**   | **Slides** | **Code**  |  **Resources** |
 | :------- | :------- | :------- | :-----: |
-| foo        | [HTML][/func_reg/foo/xode_example.html], PDF    | R, Rmd     | Lab, Key   |
+| foo        | [HTML](/func_reg/foo/xode_example.html), PDF    | R, Rmd     | Lab, Key   |
 | foo        | [HTML](https://www.wp.pl/), PDF    | R, Rmd     | Lab, Key   |
 

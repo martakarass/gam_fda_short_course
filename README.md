@@ -11,9 +11,9 @@
 
 | **Module**   | **Slides** | **Code**  |  **Resources** |
 | :------- | :------- | :------- | :-----: |
-| Introduction        | HTML, PDF    |      |   |
+| Introduction        | [HTML](/gam_fda_short_course/func_reg/foo/xode_example.html), PDF    |      |   |
+| foo        | [HTML](gam_fda_short_course/func_reg/foo/xode_example.html), PDF    | R, Rmd     | Lab, Key   |
 | foo        | HTML, PDF    | R, Rmd     | Lab, Key   |
-| foo        | [HTML](./func_reg/foo/xode_example.html), PDF    | R, Rmd     | Lab, Key   |
 
 #### Part 2: Functional regression 
 

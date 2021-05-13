@@ -12,15 +12,15 @@
 | **Module**   | **Slides** | **Code**  |  **Resources** |
 | :------- | :------- | :------- | :-----: |
 | Introduction        | HTML, PDF    |      |   |
-| Foo description        | HTML, PDF    | R, Rmd     | Lab, Key   |
-| Foo description        | HTML, PDF    | R, Rmd     | Lab, Key   |
+| foo        | HTML, PDF    | R, Rmd     | Lab, Key   |
+| foo        | HTML, PDF    | R, Rmd     | Lab, Key   |
 
 #### Part 2: Functional regression 
 
 | **Module**   | **Slides** | **Code**  |  **Resources** |
 | :------- | :------- | :------- | :-----: |
-| Introduction        | HTML, PDF    |      |   |
-| Foo description        | HTML, PDF    | R, Rmd     | Lab, Key   |
-| Foo description        | HTML, PDF    | R, Rmd     | Lab, Key   |
+| foo        | [HTML][1], PDF    | R, Rmd     | Lab, Key   |
+| foo        | HTML, PDF    | R, Rmd     | Lab, Key   |
 
+[1]: func_reg/foo/xode_example.html
 

@@ -12,8 +12,8 @@
 | **Module**   | **Slides** | **Lecture code**  |  **Lab** |
 | :------- | :------- | :------- | :-----: |
 | Introduction        | HTML    |      |   |
-| foo        | HTML    | R, Rmd     | Lab R (key)   |
-| foo        | HTML    | R, Rmd     | Lab R (key)   |
+| foo        | HTML    | R, Rmd     | Lab R, Lab R (key)   |
+| foo        | HTML    | R, Rmd     | Lab R, Lab R (key)   |
 
 #### Part 2: Functional regression 
 

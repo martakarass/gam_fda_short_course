@@ -9,7 +9,7 @@
 
 #### Part 1: Generalized additive models
 
-| **Module**   | **Slides** | **Lecture code**  |  **Lab** |
+| **Module**   | **Slides** | **Lecture code**  |  **Lab code** |
 | :------- | :------- | :------- | :-----: |
 | Introduction        | HTML    |      |   |
 | foo        | HTML    | R, Rmd     | Lab R, Lab R (key)   |

@@ -1,6 +1,8 @@
 ---
 title: "Code example"
 output: html_document
+author: "Erjia Cui" 
+date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
 ---
 
 ```{r setup, include=FALSE, echo = FALSE, purl = FALSE}

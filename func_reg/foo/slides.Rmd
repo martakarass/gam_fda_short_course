@@ -7,6 +7,13 @@ output:
     widescreen: yes
 --- 
 
+```{r, echo = FALSE, include = FALSE, eval=FALSE}
+# Note: 
+# - the code chunk below prints HTML (i.e., the slides) into PDF
+
+# pagedown::chrome_print(paste0(here::here(), "/func_reg/foo/slides.html"))
+```
+
 ```{r, echo = FALSE}
 library(knitr)
 opts_chunk$set(comment = "")

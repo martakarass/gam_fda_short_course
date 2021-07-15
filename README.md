@@ -7,23 +7,13 @@
 
 ### Schedule
 
-#### Part 1: Generalized additive models
-
-| **Module**   | **Slides** | **Lecture code**  |  **Lab code** |
+| **Module**   | **Lecture slides** | **Lecture code**  
 | :------- | :------- | :------- | :-----: |
-| Introduction        | HTML    |      |   |
-| foo        | HTML    | R, Rmd     | Lab R, Lab R (key)   |
-| foo        | HTML    | R, Rmd     | Lab R, Lab R (key)   |
+| Part 1: Generalized additive models        | [HTML][part1_slides_html]    | [R][part1_codeexample_r]    |
+| Part 2: Functional regression         | [HTML][part2_slides_html]    | [R][part2_codeexample_r]    |
 
-#### Part 2: Functional regression 
+[part1_slides_html]:     https://martakarass.github.io/gam_fda_short_course/gam/lecture_slides_gam.html
+[part1_codeexample_r]:   https://martakarass.github.io/gam_fda_short_course/gam/lecture_code_gam.R
 
-| **Module**   | **Slides** | **Lecture code**  |  **Lab code** |
-| :------- | :------- | :------- | :-----: |
-| foo        | [HTML][p2_slides1_html]    | [R][p2_codeexample1_r], [Rmd][p2_codeexample1_rmd]     | [Lab R][p2_codelab1_r], [Lab R (key)][p2_codelab1_key_r]   |
-| foo        | HTML    | R, Rmd     | Lab R, Lab R (key)   |
-
-[p2_slides1_html]:     https://martakarass.github.io/gam_fda_short_course/func_reg/foo/slides.html
-[p2_codeexample1_r]:   https://martakarass.github.io/gam_fda_short_course/func_reg/foo/code_example.R
-[p2_codeexample1_rmd]: https://martakarass.github.io/gam_fda_short_course/func_reg/foo/code_example.html
-[p2_codelab1_r]:       https://martakarass.github.io/gam_fda_short_course/func_reg/foo/code_lab.R
-[p2_codelab1_key_r]:   https://martakarass.github.io/gam_fda_short_course/func_reg/foo/code_lab_key.R
+[part2_slides_html]:     https://martakarass.github.io/gam_fda_short_course/func_reg/foo/slides.html
+[part2_codeexample_r]:   https://martakarass.github.io/gam_fda_short_course/func_reg/foo/code_example.R

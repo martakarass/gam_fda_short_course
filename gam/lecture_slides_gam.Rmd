@@ -1,0 +1,234 @@
+---
+title: "Introduction to Generalized Additive Models (GAM) in R"
+author: "Marta Karas"
+output:
+  ioslides_presentation:
+    css: ../styles.css
+    widescreen: yes
+--- 
+
+```{r, echo = FALSE, include = FALSE, eval=FALSE}
+# Note: 
+# - the code chunk below prints HTML (i.e., the slides) into PDF
+
+# pagedown::chrome_print(paste0(here::here(), "/func_reg/foo/slides.html"))
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+rm(list = ls())
+library(tidyverse)
+library(knitr)
+library(ggfortify)
+opts_chunk$set(comment = "", message = FALSE, warning = FALSE)
+```
+
+## List of topics
+
+1. Motivation: Why not just use standard methods?
+2. Revision: Model formulas for Linear Model (LM), General Linear Model (GLM) 
+3. Generalized Additive Model (GAM) formula and fit 
+4. Coding example: single predictor
+5. Coding example: multiple predictors
+6. GAM with non-Gaussian outcome 
+7. Model selection: when to use smooth term? 
+
+## Motivating example 
+
+```{r, echo = FALSE}
+set.seed(123)
+n    <- 500
+x1   <- runif(n)
+x2   <- runif(n)
+x3   <- rbinom(n, size = 1, prob = 0.5)
+f_x1 <- sin(2*(4*x1-2)) + 2*exp(-(16^2)*((x1-0.5)^2))
+eps  <- rnorm(n, sd = 0.3)
+y    <- f_x1 + (0.3 * x2) + (0.5 * x3) + eps
+dat  <- tibble(y, x1, x2, x3)
+# plot(y ~ x1)
+```
+
+```{r}
+dat
+```
+
+## Fit linear regression model
+
+```{r}
+fit <- lm(y ~ x1 + x2 + x3)
+summary(fit)
+```
+
+## Run simple model diagnostics
+
+- Check *linearity* of the data assumption with Residuals vs Fitted plot (residual plot will show no fitted pattern)
+
+- Check *normality of residuals* assumption with the QQ plot (should approximately follow a straight line)
+
+- Check *homogeneity* of variance assumption with the Scale-Location plot (residuals should be spread equally along the ranges of predictors)
+
+
+- Check for *outliers and high levarage points* (high predictor values points)  with the Residuals vs Leverage plot 
+
+
+```{r, fig.width=7, fig.height=6.5, eval = FALSE}
+library(ggfortify) # to use autoplot
+library(tidyverse)
+autoplot(fit, label.size = 3, alpha = 0.5) + 
+  theme_grey(base_size = 12)
+```
+
+##
+
+```{r, fig.width=7, fig.height=6.5, echo = FALSE}
+autoplot(fit, label.size = 3, alpha = 0.5) + theme_grey(base_size = 12)
+```
+
+
+## Dig more into checking *linearity* of the data assumption
+
+```{r, fig.width=10, fig.height=3.3}
+dat %>% 
+  pivot_longer(cols = -y) %>% 
+  ggplot(aes(x = value, y = y)) + 
+  geom_point(alpha = 0.5) + 
+  geom_smooth(method = "lm") + 
+  facet_wrap(~ name, nrow = 1) +  
+  theme_gray(base_size = 12) 
+```
+
+## Dig more into checking *linearity* of the data assumption
+
+```{r, fig.width=10, fig.height=3.3}
+dat %>% 
+  pivot_longer(cols = -y) %>% 
+  ggplot(aes(x = value, y = y)) + 
+  geom_point(alpha = 0.5) + 
+  geom_smooth(method = "lm") + 
+  facet_wrap(~ name, nrow = 1) +  
+  theme_gray(base_size = 12) 
+```
+
+Ops! Standard LM is not going to capture relationship between `y` and `x1` well.
+
+## Idea: polynomial regression
+
+- We could try a polynomial regression, e.g. fitting a quadratic or cubic function of `x1` within the LM regression framework
+
+```{r, fig.width=5, fig.height=4}
+# fit_poly3 <- lm(y ~ x1 + I(x1^2) + I(x1^3), data = dat)
+fit_poly3 <- lm(y ~ poly(x1, 3), data = dat)
+```
+
+```{r, echo = FALSE, fig.width=6, fig.height=4}
+dat$y_fitted_poly3 <- fitted(fit_poly3)
+ggplot(dat) + 
+  geom_point(aes(x = x1, y = y), alpha = 0.5) + 
+  geom_line(aes(x = x1, y = y_fitted_poly3), color = "blue", size = 1) +  
+  theme_gray(base_size = 12) 
+```
+
+## Idea: polynomial regression
+
+- We could try even higher degrees of a polynomial
+- Not really working (low polynomial: poor fit; high polynomial: too wiggly where it doesn't seem it should)
+
+```{r, echo = FALSE, fig.width=5, fig.height=4}
+poly_degree_grid <- c(3, 6, 9, 12, 15)
+fitted_vec <- numeric()
+for (poly_degree in poly_degree_grid){
+  fit_poly <- lm(y ~ poly(x1, poly_degree), data = dat)
+  fitted_vec <- c(fitted_vec, fitted(fit_poly))
+}
+dat_fitted <- data.frame(
+  x1 = rep(dat$x1, times = 5), 
+  y_fitted = fitted_vec,
+  degree = factor(rep(poly_degree_grid, each = nrow(dat))))
+```
+
+```{r, echo = FALSE, fig.width=7, fig.height=4.3}
+ggplot() + 
+  geom_point(data = dat, aes(x = x1, y = y), alpha = 0.3) + 
+  geom_line(data = dat_fitted, aes(x = x1, y = y_fitted, color = degree),
+            size = 1) +  
+  theme_gray(base_size = 12) + 
+  labs(color = "poly\ndegree")
+```
+
+## Idea: piece-wise polynomial regression
+
+- Use a polynomial regression equation in a way that the coefficients are allowed to differ in different parts of the range of predictor
+
+$$
+y_{i}=\left\{\begin{array}{ll}
+\beta_{01}+\beta_{11} x_{i}+\beta_{21} x_{i}^{2}+\beta_{31} x_{i}^{3}+\epsilon_{i} & \text { if } x_{i}<c \\
+\beta_{02}+\beta_{12} x_{i}+\beta_{22} x_{i}^{2}+\beta_{32} x_{i}^{3}+\epsilon_{i} & \text { if } x_{i} \geq c
+\end{array}\right.
+$$
+
+- Multiple points can be used to divide the data
+
+```{r}
+fit_poly3 <- lm(y ~ poly(x1, 3), data = dat)
+
+library(segmented)
+# psi -- starting values for the breakpoints to be estimated
+fit_poly3_seg <- segmented(fit_poly3, psi = c(0.2, 0.4, 0.6, 0.8))
+```
+
+## Idea: piece-wise polynomial regression
+
+- Not really working (pieces are disconnected or/and are wiggly)
+
+```{r, echo = FALSE, fig.width=7, fig.height=5}
+dat$seg_fitted <- fitted(fit_poly3_seg)
+dat$seg_group <- cut(dat$x1, breaks = c(0, 1, fit_poly3_seg$psi[, 2]), include.lowest = TRUE)
+ggplot(dat) + 
+  geom_point(aes(x = x1, y = y), alpha = 0.3) + 
+  geom_line(aes(x = x1, y = seg_fitted, group = seg_group),
+            size = 1, color = "blue") +  
+  theme_gray(base_size = 12) + 
+  labs(title = "Used polynomial of degree = 3")
+```
+
+## Idea: piece-wise polynomial regression
+
+- Not really working (pieces are disconnected or/and are wiggly)
+
+```{r, echo = FALSE, fig.width=7, fig.height=5}
+fit_poly15 <- lm(y ~ poly(x1, 15), data = dat)
+fit_poly15_seg <- segmented(fit_poly15, psi = c(0.2, 0.4, 0.6, 0.8))
+dat$seg_fitted <- fitted(fit_poly15_seg)
+dat$seg_group <- cut(dat$x1, breaks = c(0, 1, fit_poly15_seg$psi[, 2]), include.lowest = TRUE)
+ggplot(dat) + 
+  geom_point(aes(x = x1, y = y), alpha = 0.3) + 
+  geom_line(aes(x = x1, y = seg_fitted, group = seg_group),
+            size = 1, color = "blue") +  
+  theme_gray(base_size = 12) + 
+  labs(title = "Used polynomial of degree = 15")
+```
+
+
+
+## Credit
+
+* Motivating example (idea and code to generate the data) follows (Clark, 2019) 
+
+## References
+
+* (Harezlak et al., 2018) Harezlak, J., Wand, M. P., Ruppert, D. (2018) Semiparametric Regression with R. Springer, New York, NY
+
+* (Wood, 2006) Wood, S. N. Generalized Additive Models: An Introduction with R. (2006) Vol. 66. CRC Press.
+
+* (Ross, 2021) Ross, N. Generalized Additive Models in R. (Accessed online 2021-07-14) URL: [https://noamross.github.io/gams-in-r-course/](https://noamross.github.io/gams-in-r-course/)
+
+* (Clark, 2019) Clark, M. Generalized Additive Models. (Accessed online 2021-07-14) URL: https://m-clark.github.io/generalized-additive-models/
+
+
+ 
+
+
+
+
+
+
+

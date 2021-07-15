@@ -25,12 +25,11 @@ opts_chunk$set(comment = "", message = FALSE, warning = FALSE)
 ## List of topics
 
 1. Motivation: Why not just use standard methods?
-2. Revision: Model formulas for Linear Model (LM), General Linear Model (GLM) 
-3. Generalized Additive Model (GAM) formula and fit 
-4. Coding example: single predictor
-5. Coding example: multiple predictors
-6. GAM with non-Gaussian outcome 
-7. Model selection: when to use smooth term? 
+2. Generalized Additive Model (GAM) formula and fit 
+3. Example: GAM with single predictor
+4. Example: GAM with multiple predictors
+5. Example: GAM with non-Gaussian outcome 
+6. Example: Model selection -- when to use smooth term? 
 
 ## Motivating example 
 
